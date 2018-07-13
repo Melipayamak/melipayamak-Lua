@@ -24,7 +24,7 @@
 </div>
 
 
-```js
+```lua
 local username = "username";
 local password = "password";
 local from = "5000...";
