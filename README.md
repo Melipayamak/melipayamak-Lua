@@ -69,9 +69,9 @@ SendSimpleSMS(username, password, to, from, text, isFlash);
 
 #### ارسال
 
-```js
+```lua
 Send(to, from, text, isFlash);
-SendSimpleSMS(to []string, from, text, isFlash);
+SendSimpleSMS(to, from, text, isFlash);
 ```
 
 
@@ -82,40 +82,39 @@ SendSimpleSMS(to []string, from, text, isFlash);
 </div>
 
 #### اضافه کردن گروه جدید
-```js
+```lua
 AddGroup(username, password, groupName, Descriptions, showToChilds);
 ```
 
 #### اضافه کردن کاربر جدید
-```js
+```lua
 AddContact(username, password, options);
-
 ```
 
 #### بررسی موجود بودن شماره در دفترچه تلفن
-```js
+```lua
 CheckMobileExistInContact(username, password, mobileNumber);
 ```
 
 #### دریافت اطلاعات دفترچه تلفن
-```js
+```lua
 GetContacts(username, password, groupId, keyword, count);
 ```
 #### دریافت گروه ها
-```js
+```lua
 GetGroups(username, password);
 ```
 #### ویرایش مخاطب
-```js
+```lua
 ChangeContact(username, password, options);
 ```
 
 #### حذف مخاطب
-```js
+```lua
 RemoveContact(username, password, mobilenumber);
 ```
 #### دریافت اطلاعات مناسبت های فرد
-```js
+```lua
 GetContactEvents(username, password, contactId);
 ```
 
@@ -126,93 +125,93 @@ GetContactEvents(username, password, contactId);
 </div>
 
 #### ثبت فیش واریزی
-```js
+```lua
 AddPayment(username, password, options);
 ```
 
 #### اضافه کردن کاربر جدید در سامانه
-```js
+```lua
 AddUser(username, password, options);
 
 ```
 
 #### اضافه کردن کاربر جدید در سامانه(کامل)
-```js
+```lua
 AddUserComplete(username, password, options);
 ```
 
 #### اضافه کردن کاربر جدید در سامانه(WithLocation)
-```js
+```lua
 AddUserWithLocation(username, password, options);
 ```
 #### بدست آوردن ID کاربر
-```js
+```lua
 AuthenticateUser(username, password);
 ```
 #### تغییر اعتبار
-```js
+```lua
 ChangeUserCredit(username, password, amount, description, targetUsername, GetTax);
 ```
 
 #### فراموشی رمز عبور
-```js
+```lua
 ForgotPassword(username, password, mobileNumber, emailAddress, targetUsername);
 ```
 #### دریافت تعرفه پایه کاربر
-```js
+```lua
 GetUserBasePrice(username, password, targetUsername);
 ```
 
 #### دریافت اعتبار کاربر
-```js
+```lua
 GetUserCredit(username, password, targetUsername);
 ```
 
 #### دریافت مشخصات کاربر
-```js
+```lua
 GetUserDetails(username, password, targetUsername);
 ```
 
 #### دریافت شماره های کاربر
-```js
+```lua
 GetUserNumbers(username, password);
 ```
 
 #### دریافت تراکنش های کاربر
-```js
+```lua
 GetUserTransactions(username, password, targetUsername, creditType, dateFrom, dateTo, keyword);
 ```
 
 #### دریافت اطلاعات  کاربران
-```js
+```lua
 GetUsers(username, password);
 ```
 
 
 #### دریافت اطلاعات  فیلترینگ
-```js
+```lua
 HasFilter(username, password, text);
 ```
 
 
 ####  حذف کاربر
-```js
+```lua
 RemoveUser(username, password, targetUsername);
 ```
 
 
 #### مشاهده استان ها
-```js
+```lua
 GetProvinces(username, password);
 ```
 
 #### مشاهده کد شهرستان 
-```js
+```lua
 GetCities(username, password, provinceId);
 ```
 
 
 #### مشاهده تاریخ انقضای کاربر 
-```js
+```lua
 GetExpireDate(username, password);
 ```
