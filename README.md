@@ -74,14 +74,14 @@ Send(to, from, text, isFlash);
 SendSimpleSMS(to, from, text, isFlash);
 ```
 #### دریافت وضعیت ارسال
-```perl
+```lua
 GetDelivery(recId);
 GetDeliveries(recIds);
 ```
 
 #### لیست پیامک ها
 
-```perl
+```lua
 GetMessages(location, index, count, from);
 getMessages(location, from, index, count);
 // جهت دریافت به صورت رشته ای
@@ -92,82 +92,82 @@ GetUsersMessagesByDate(location, from, index, count, dateFrom, dateTo);
 ```
 
 #### موجودی
-```perl
+```lua
 GetCredit();
 ```
 
 #### تعرفه پایه / دریافت قیمت قبل از ارسال
-```perl
+```lua
 GetBasePrice();
 GetSmsPrice(irancellCount, mtnCount, from, text);
 ```
 #### لیست شماره اختصاصی
-```perl
+```lua
 GetUserNumbers();
 ```
 
 #### بررسی تعداد پیامک های دریافتی
-```perl
+```lua
 GetInboxCount(isRead);
 //پیش فرض خوانده نشده 
 ```
 
 #### ارسال پیامک پیشرفته
-```perl
+```lua
 SendSms(to, from, text, isflash, udh, recId, status);
 ```
 
 #### مشاهده مشخصات پیام
-```perl
+```lua
 GetMessagesReceptions(msgId, fromRows);
 ```
 
 
 #### حذف پیام دریافتی
-```perl
+```lua
 RemoveMessages2(location, msgIds);
 ```
 
 
 #### ارسال زماندار
-```perl
+```lua
 AddSchedule(to, from, text, isflash, scheduleDateTime, period);
 ```
 
 #### ارسال زماندار متناظر
-```perl
+```lua
 AddMultipleSchedule(to, from, text, isflash, scheduleDateTime, period);
 ```
 
 
 #### ارسال سررسید
-```perl
+```lua
 AddNewUsance(to, from, text, isflash, scheduleStartDateTime, countRepeat, scheduleEndDateTime, periodType);
 ```
 
 #### مشاهده وضعیت ارسال زماندار
-```perl
+```lua
 GetScheduleStatus(schId);
 ```
 
 #### حذف پیامک زماندار
-```perl
+```lua
 RemoveSchedule(schId);
 ```
 
 
 ####  ارسال پیامک همراه با تماس صوتی
-```perl
+```lua
 SendSMSWithSpeechText(smsBody, speechBody, from, to);
 ```
 
 ####  ارسال پیامک همراه با تماس صوتی به صورت زمانبندی
-```perl
+```lua
 SendSMSWithSpeechTextBySchduleDate(smsBody, speechBody, from, to, scheduleDate);
 ```
 
 ####  دریافت وضعیت پیامک همراه با تماس صوتی 
-```perl
+```lua
 GetSendSMSWithSpeechTextStatus(recId);
 ```
 <div dir='rtl'>
@@ -177,71 +177,71 @@ GetSendSMSWithSpeechTextStatus(recId);
 </div>
 
 #### دریافت شناسه شاخه های بانک شماره
-```perl
+```lua
 GetBranchs(owner);
 ```
 
 
 #### اضافه کردن یک بانک شماره جدید
-```perl
+```lua
 AddBranch(branchName, owner);
 ```
 
 #### اضافه کردن شماره به بانک
-```perl
+```lua
 AddNumber(branchId, mobileNumbers);
 ```
 
 #### حذف یک بانک
-```perl
+```lua
 RemoveBranch(branchId);
 ```
 
 #### ارسال انبوه از طریق بانک
-```perl
+```lua
 AddBulk(from, branch, bulkType, title, message, rangeFrom, rangeTo, DateToSend, requestCount, rowFrom);
 ```
 
 #### تعداد شماره های موجود
-```perl
+```lua
 GetBulkCount(branch, rangeFrom, rangeTo);
 ```
 
 #### گزارش گیری از ارسال انبوه
-```perl
+```lua
 GetBulkReceptions(bulkId, fromRows);
 ```
 
 
 #### تعیین وضعیت ارسال 
-```perl
+```lua
 GetBulkStatus(bulkId, sent, failed, status);
 ```
 
 #### تعداد ارسال های امروز
-```perl
+```lua
 GetTodaySent();
 ```
 
 #### تعداد ارسال های کل
 
-```perl
+```lua
 GetTotalSent();
 ```
 
 #### حذف ارسال منطقه ای
-```perl
+```lua
 RemoveBulk(bulkId);
 ```
 
 #### ارسال متناظر
-```perl
+```lua
 SendMultipleSMS(to, from, text, isflash, udh, recId, status);
 ```
 
 #### نمایش دهنده وضعیت گزارش گیری
 
-```perl
+```lua
 UpdateBulkDelivery(bulkId);
 ```
 <div dir='rtl'>
@@ -251,34 +251,34 @@ UpdateBulkDelivery(bulkId);
 </div>
 
 #### ثبت تیکت جدید
-```perl
+```lua
 AddTicket(title, content, aletWithSms);
 ```
 
 #### جستجو و دریافت تیکت ها
 
-```perl
+```lua
 GetReceivedTickets(ticketOwner, ticketType, keyword);
 ```
 
 #### دریافت تعداد تیکت های کاربران
-```perl
+```lua
 GetReceivedTicketsCount(ticketType);
 ```
 
 #### دریافت تیکت های ارسال شده
-```perl
+```lua
 GetSentTickets(ticketOwner, ticketType, keyword);
 ```
 
 #### دریافت تعداد تیکت های ارسال شده
-```perl
+```lua
 GetSentTicketsCount(ticketType);
 ```
 
 
 #### پاسخگویی به تیکت
-```perl
+```lua
 ResponseTicket(ticketId, type, content, alertWithSms);
 ```
 
