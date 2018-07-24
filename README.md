@@ -70,105 +70,105 @@ SendSimpleSMS(username, password, to, from, text, isFlash);
 #### ارسال
 
 ```lua
-Send(to, from, text, isFlash);
-SendSimpleSMS(to, from, text, isFlash);
+Send(username, password, to, from, text, isFlash);
+SendSimpleSMS(username, password, to, from, text, isFlash);
 ```
 #### دریافت وضعیت ارسال
 ```lua
-GetDelivery(recId);
-GetDeliveries(recIds);
+GetDelivery(username, password, recId);
+GetDeliveries(username, password, recIds);
 ```
 
 #### لیست پیامک ها
 
 ```lua
-GetMessages(location, index, count, from);
-getMessages(location, from, index, count);
+GetMessages(username, password, location, index, count, from);
+getMessages(username, password, location, from, index, count);
 // جهت دریافت به صورت رشته ای
-GetMessagesByDate(location, from, index, count, dateFrom, dateTo);
+GetMessagesByDate(username, password, location, from, index, count, dateFrom, dateTo);
 //جهت دریافت بر اساس تاریخ
-GetUsersMessagesByDate(location, from, index, count, dateFrom, dateTo);
+GetUsersMessagesByDate(username, password, location, from, index, count, dateFrom, dateTo);
 // جهت دریافت پیام های کاربران بر اساس تاریخ 
 ```
 
 #### موجودی
 ```lua
-GetCredit();
+GetCredit(username, password);
 ```
 
 #### تعرفه پایه / دریافت قیمت قبل از ارسال
 ```lua
-GetBasePrice();
-GetSmsPrice(irancellCount, mtnCount, from, text);
+GetBasePrice(username, password);
+GetSmsPrice(username, password, irancellCount, mtnCount, from, text);
 ```
 #### لیست شماره اختصاصی
 ```lua
-GetUserNumbers();
+GetUserNumbers(username, password);
 ```
 
 #### بررسی تعداد پیامک های دریافتی
 ```lua
-GetInboxCount(isRead);
+GetInboxCount(username, password, isRead);
 //پیش فرض خوانده نشده 
 ```
 
 #### ارسال پیامک پیشرفته
 ```lua
-SendSms(to, from, text, isflash, udh, recId, status);
+SendSms(username, password, to, from, text, isflash, udh, recId, status);
 ```
 
 #### مشاهده مشخصات پیام
 ```lua
-GetMessagesReceptions(msgId, fromRows);
+GetMessagesReceptions(username, password, msgId, fromRows);
 ```
 
 
 #### حذف پیام دریافتی
 ```lua
-RemoveMessages2(location, msgIds);
+RemoveMessages2(username, password, location, msgIds);
 ```
 
 
 #### ارسال زماندار
 ```lua
-AddSchedule(to, from, text, isflash, scheduleDateTime, period);
+AddSchedule(username, password, to, from, text, isflash, scheduleDateTime, period);
 ```
 
 #### ارسال زماندار متناظر
 ```lua
-AddMultipleSchedule(to, from, text, isflash, scheduleDateTime, period);
+AddMultipleSchedule(username, password, to, from, text, isflash, scheduleDateTime, period);
 ```
 
 
 #### ارسال سررسید
 ```lua
-AddNewUsance(to, from, text, isflash, scheduleStartDateTime, countRepeat, scheduleEndDateTime, periodType);
+AddNewUsance(username, password, to, from, text, isflash, scheduleStartDateTime, countRepeat, scheduleEndDateTime, periodType);
 ```
 
 #### مشاهده وضعیت ارسال زماندار
 ```lua
-GetScheduleStatus(schId);
+GetScheduleStatus(username, password, schId);
 ```
 
 #### حذف پیامک زماندار
 ```lua
-RemoveSchedule(schId);
+RemoveSchedule(username, password, schId);
 ```
 
 
 ####  ارسال پیامک همراه با تماس صوتی
 ```lua
-SendSMSWithSpeechText(smsBody, speechBody, from, to);
+SendSMSWithSpeechText(username, password, smsBody, speechBody, from, to);
 ```
 
 ####  ارسال پیامک همراه با تماس صوتی به صورت زمانبندی
 ```lua
-SendSMSWithSpeechTextBySchduleDate(smsBody, speechBody, from, to, scheduleDate);
+SendSMSWithSpeechTextBySchduleDate(username, password, smsBody, speechBody, from, to, scheduleDate);
 ```
 
 ####  دریافت وضعیت پیامک همراه با تماس صوتی 
 ```lua
-GetSendSMSWithSpeechTextStatus(recId);
+GetSendSMSWithSpeechTextStatus(username, password, recId);
 ```
 <div dir='rtl'>
   
@@ -178,71 +178,71 @@ GetSendSMSWithSpeechTextStatus(recId);
 
 #### دریافت شناسه شاخه های بانک شماره
 ```lua
-GetBranchs(owner);
+GetBranchs(username, password, owner);
 ```
 
 
 #### اضافه کردن یک بانک شماره جدید
 ```lua
-AddBranch(branchName, owner);
+AddBranch(username, password, branchName, owner);
 ```
 
 #### اضافه کردن شماره به بانک
 ```lua
-AddNumber(branchId, mobileNumbers);
+AddNumber(username, password, branchId, mobileNumbers);
 ```
 
 #### حذف یک بانک
 ```lua
-RemoveBranch(branchId);
+RemoveBranch(username, password, branchId);
 ```
 
 #### ارسال انبوه از طریق بانک
 ```lua
-AddBulk(from, branch, bulkType, title, message, rangeFrom, rangeTo, DateToSend, requestCount, rowFrom);
+AddBulk(username, password, from, branch, bulkType, title, message, rangeFrom, rangeTo, DateToSend, requestCount, rowFrom);
 ```
 
 #### تعداد شماره های موجود
 ```lua
-GetBulkCount(branch, rangeFrom, rangeTo);
+GetBulkCount(username, password, branch, rangeFrom, rangeTo);
 ```
 
 #### گزارش گیری از ارسال انبوه
 ```lua
-GetBulkReceptions(bulkId, fromRows);
+GetBulkReceptions(username, password, bulkId, fromRows);
 ```
 
 
 #### تعیین وضعیت ارسال 
 ```lua
-GetBulkStatus(bulkId, sent, failed, status);
+GetBulkStatus(username, password, bulkId, sent, failed, status);
 ```
 
 #### تعداد ارسال های امروز
 ```lua
-GetTodaySent();
+GetTodaySent(username, password);
 ```
 
 #### تعداد ارسال های کل
 
 ```lua
-GetTotalSent();
+GetTotalSent(username, password);
 ```
 
 #### حذف ارسال منطقه ای
 ```lua
-RemoveBulk(bulkId);
+RemoveBulk(username, password, bulkId);
 ```
 
 #### ارسال متناظر
 ```lua
-SendMultipleSMS(to, from, text, isflash, udh, recId, status);
+SendMultipleSMS(username, password, to, from, text, isflash, udh, recId, status);
 ```
 
 #### نمایش دهنده وضعیت گزارش گیری
 
 ```lua
-UpdateBulkDelivery(bulkId);
+UpdateBulkDelivery(username, password, bulkId);
 ```
 <div dir='rtl'>
   
@@ -252,34 +252,34 @@ UpdateBulkDelivery(bulkId);
 
 #### ثبت تیکت جدید
 ```lua
-AddTicket(title, content, aletWithSms);
+AddTicket(username, password, title, content, aletWithSms);
 ```
 
 #### جستجو و دریافت تیکت ها
 
 ```lua
-GetReceivedTickets(ticketOwner, ticketType, keyword);
+GetReceivedTickets(username, password, ticketOwner, ticketType, keyword);
 ```
 
 #### دریافت تعداد تیکت های کاربران
 ```lua
-GetReceivedTicketsCount(ticketType);
+GetReceivedTicketsCount(username, password, ticketType);
 ```
 
 #### دریافت تیکت های ارسال شده
 ```lua
-GetSentTickets(ticketOwner, ticketType, keyword);
+GetSentTickets(username, password, ticketOwner, ticketType, keyword);
 ```
 
 #### دریافت تعداد تیکت های ارسال شده
 ```lua
-GetSentTicketsCount(ticketType);
+GetSentTicketsCount(username, password, ticketType);
 ```
 
 
 #### پاسخگویی به تیکت
 ```lua
-ResponseTicket(ticketId, type, content, alertWithSms);
+ResponseTicket(username, password, ticketId, type, content, alertWithSms);
 ```
 
 <div dir='rtl'>
