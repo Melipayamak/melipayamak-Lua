@@ -73,7 +73,214 @@ SendSimpleSMS(username, password, to, from, text, isFlash);
 Send(to, from, text, isFlash);
 SendSimpleSMS(to, from, text, isFlash);
 ```
+#### دریافت وضعیت ارسال
+```perl
+GetDelivery(recId);
+GetDeliveries(recIds);
+```
 
+#### لیست پیامک ها
+
+```perl
+GetMessages(location, index, count, from);
+getMessages(location, from, index, count);
+// جهت دریافت به صورت رشته ای
+GetMessagesByDate(location, from, index, count, dateFrom, dateTo);
+//جهت دریافت بر اساس تاریخ
+GetUsersMessagesByDate(location, from, index, count, dateFrom, dateTo);
+// جهت دریافت پیام های کاربران بر اساس تاریخ 
+```
+
+#### موجودی
+```perl
+GetCredit();
+```
+
+#### تعرفه پایه / دریافت قیمت قبل از ارسال
+```perl
+GetBasePrice();
+GetSmsPrice(irancellCount, mtnCount, from, text);
+```
+#### لیست شماره اختصاصی
+```perl
+GetUserNumbers();
+```
+
+#### بررسی تعداد پیامک های دریافتی
+```perl
+GetInboxCount(isRead);
+//پیش فرض خوانده نشده 
+```
+
+#### ارسال پیامک پیشرفته
+```perl
+SendSms(to, from, text, isflash, udh, recId, status);
+```
+
+#### مشاهده مشخصات پیام
+```perl
+GetMessagesReceptions(msgId, fromRows);
+```
+
+
+#### حذف پیام دریافتی
+```perl
+RemoveMessages2(location, msgIds);
+```
+
+
+#### ارسال زماندار
+```perl
+AddSchedule(to, from, text, isflash, scheduleDateTime, period);
+```
+
+#### ارسال زماندار متناظر
+```perl
+AddMultipleSchedule(to, from, text, isflash, scheduleDateTime, period);
+```
+
+
+#### ارسال سررسید
+```perl
+AddNewUsance(to, from, text, isflash, scheduleStartDateTime, countRepeat, scheduleEndDateTime, periodType);
+```
+
+#### مشاهده وضعیت ارسال زماندار
+```perl
+GetScheduleStatus(schId);
+```
+
+#### حذف پیامک زماندار
+```perl
+RemoveSchedule(schId);
+```
+
+
+####  ارسال پیامک همراه با تماس صوتی
+```perl
+SendSMSWithSpeechText(smsBody, speechBody, from, to);
+```
+
+####  ارسال پیامک همراه با تماس صوتی به صورت زمانبندی
+```perl
+SendSMSWithSpeechTextBySchduleDate(smsBody, speechBody, from, to, scheduleDate);
+```
+
+####  دریافت وضعیت پیامک همراه با تماس صوتی 
+```perl
+GetSendSMSWithSpeechTextStatus(recId);
+```
+<div dir='rtl'>
+  
+### وب سرویس ارسال انبوه/منطقه ای
+
+</div>
+
+#### دریافت شناسه شاخه های بانک شماره
+```perl
+GetBranchs(owner);
+```
+
+
+#### اضافه کردن یک بانک شماره جدید
+```perl
+AddBranch(branchName, owner);
+```
+
+#### اضافه کردن شماره به بانک
+```perl
+AddNumber(branchId, mobileNumbers);
+```
+
+#### حذف یک بانک
+```perl
+RemoveBranch(branchId);
+```
+
+#### ارسال انبوه از طریق بانک
+```perl
+AddBulk(from, branch, bulkType, title, message, rangeFrom, rangeTo, DateToSend, requestCount, rowFrom);
+```
+
+#### تعداد شماره های موجود
+```perl
+GetBulkCount(branch, rangeFrom, rangeTo);
+```
+
+#### گزارش گیری از ارسال انبوه
+```perl
+GetBulkReceptions(bulkId, fromRows);
+```
+
+
+#### تعیین وضعیت ارسال 
+```perl
+GetBulkStatus(bulkId, sent, failed, status);
+```
+
+#### تعداد ارسال های امروز
+```perl
+GetTodaySent();
+```
+
+#### تعداد ارسال های کل
+
+```perl
+GetTotalSent();
+```
+
+#### حذف ارسال منطقه ای
+```perl
+RemoveBulk(bulkId);
+```
+
+#### ارسال متناظر
+```perl
+SendMultipleSMS(to, from, text, isflash, udh, recId, status);
+```
+
+#### نمایش دهنده وضعیت گزارش گیری
+
+```perl
+UpdateBulkDelivery(bulkId);
+```
+<div dir='rtl'>
+  
+### وب سرویس تیکت
+
+</div>
+
+#### ثبت تیکت جدید
+```perl
+AddTicket(title, content, aletWithSms);
+```
+
+#### جستجو و دریافت تیکت ها
+
+```perl
+GetReceivedTickets(ticketOwner, ticketType, keyword);
+```
+
+#### دریافت تعداد تیکت های کاربران
+```perl
+GetReceivedTicketsCount(ticketType);
+```
+
+#### دریافت تیکت های ارسال شده
+```perl
+GetSentTickets(ticketOwner, ticketType, keyword);
+```
+
+#### دریافت تعداد تیکت های ارسال شده
+```perl
+GetSentTicketsCount(ticketType);
+```
+
+
+#### پاسخگویی به تیکت
+```perl
+ResponseTicket(ticketId, type, content, alertWithSms);
+```
 
 <div dir='rtl'>
   
