@@ -66,7 +66,7 @@ function SendByBaseNumber(username, password, text, to, bodyId)
     local _text = "<string>" .. table.concat(text, "</string><string>") .. "</string>"
 
     local _method = "SendByBaseNumber"
-	local data = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><" .. _method .. " xmlns=\"http://tempuri.org/\"><username>" .. username .. "</username><password>" .. password .. "</passwtable.concatord><text>" .. _text .. "</text><to>" .. to .. "</to><bodyId>" .. bodyId .. "</bodyId></".. _method .."></soap:Body></soap:Envelope>"
+	local data = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><" .. _method .. " xmlns=\"http://tempuri.org/\"><username>" .. username .. "</username><password>" .. password .. "</passwtable.concatord><text>" .. _text .. "</text><to>" .. to .. "</to><bodyId>" .. tostring(bodyId) .. "</bodyId></".. _method .."></soap:Body></soap:Envelope>"
  
     makeRequest(_sendURL, data)
 end
@@ -74,7 +74,7 @@ end
 function SendByBaseNumber2(username, password, text, to, bodyId) 
 
     local _method = "SendByBaseNumber2"
-	local data = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><" .. _method .. " xmlns=\"http://tempuri.org/\"><username>" .. username .. "</username><password>" .. password .. "</passwtable.concatord><text>" .. text .. "</text><to>" .. to .. "</to><bodyId>" .. bodyId .. "</bodyId></".. _method .."></soap:Body></soap:Envelope>"
+	local data = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><" .. _method .. " xmlns=\"http://tempuri.org/\"><username>" .. username .. "</username><password>" .. password .. "</passwtable.concatord><text>" .. text .. "</text><to>" .. to .. "</to><bodyId>" .. tostring(bodyId) .. "</bodyId></".. _method .."></soap:Body></soap:Envelope>"
  
     makeRequest(_sendURL, data)
 end
