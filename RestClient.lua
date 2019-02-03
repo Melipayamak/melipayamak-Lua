@@ -23,6 +23,10 @@ function SendSMS( username, password, from, to, text )
 	makeRequest("https://rest.payamak-panel.com/api/SendSMS/SendSMS", data)
 end
 
+function SendByBaseNumber( username, password, text, to, bodyId )
+	local data =  "username="..username.."&password="..password.."&text="..text.."&to="..to.."&bodyId="..bodyId
+	makeRequest("https://rest.payamak-panel.com/api/SendSMS/BaseServiceNumber", data)
+end
 
 function GetDeliveries2( username, password, recId )
 	local data =  "UserName="..username.."&PassWord="..password.."&recId="..recId
