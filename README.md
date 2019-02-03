@@ -73,6 +73,15 @@ SendSimpleSMS(username, password, to, from, text, isFlash);
 Send(username, password, to, from, text, isFlash);
 SendSimpleSMS(username, password, to, from, text, isFlash);
 ```
+
+#### ارسال از خط خدماتی اشتراکی
+
+```lua
+SendByBaseNumber(username, password, text, to, bodyId);
+--soap:
+SendByBaseNumber2(username, password, text, to, bodyId);
+```
+
 #### دریافت وضعیت ارسال
 ```lua
 GetDelivery(username, password, recId);
