@@ -164,6 +164,11 @@ GetScheduleStatus(username, password, schId);
 RemoveSchedule(username, password, schId);
 ```
 
+<div dir='rtl'>
+
+### وب سرویس پیامک صوتی
+
+</div>
 
 ####  ارسال پیامک همراه با تماس صوتی
 ```lua
@@ -179,6 +184,22 @@ SendSMSWithSpeechTextBySchduleDate(username, password, smsBody, speechBody, from
 ```lua
 GetSendSMSWithSpeechTextStatus(username, password, recId);
 ```
+
+#### تماس انبوه زماندار
+```lua
+SendBulkSpeechText(username, password, title, body, receivers, DateToSend, repeatCount);
+```
+
+#### تماس انبوه زماندار با انتخاب فایل
+```lua
+SendBulkVoiceSMS(username, password, title, voiceFileId, receivers, DateToSend, repeatCount);
+```
+
+#### آپلود فایل صوتی
+```lua
+UploadVoiceFile(username, password, title, base64StringFile);
+```
+
 <div dir='rtl'>
   
 ### وب سرویس ارسال انبوه/منطقه ای
