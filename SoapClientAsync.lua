@@ -1,3 +1,4 @@
+local copas = require("copas")
 local http = require("socket.http")
 local ltn12 = require("ltn12")
 
@@ -10,19 +11,24 @@ local _actionsURL = "http://api.payamak-panel.com/post/actions.asmx"
 local _scheduleURL = "http://api.payamak-panel.com/post/Schedule.asmx"
 local _voiceURL = "http://api.payamak-panel.com/post/Voice.asmx"
 
-function makeRequest( url, data )
-    local response = {}
-    http.request({
-        method = "POST",
-        url = url,
-        headers = {
-                ["Content-Type"] = "text/xml; charset=utf-8",
-                ["Content-Length"] = string.len(data)
-            },
-        source = ltn12.source.string(data),
-        sink = ltn12.sink.table(response)
-        })
-    print(table.concat(response))
+function makeRequest(url, data)
+
+    copas.addthread(function()
+    
+        -- print("Thread 1 Added")
+        local response = {}
+        http.request({
+            method = "POST",
+            url = url,
+            headers = {
+                    ["Content-Type"] = "text/xml; charset=utf-8",
+                    ["Content-Length"] = string.len(data)
+                },
+            source = ltn12.source.string(data),
+            sink = ltn12.sink.table(response)
+            })
+        print(table.concat(response))
+    end)
 end
 
 

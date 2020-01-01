@@ -1,20 +1,26 @@
+local copas = require("copas")
 local http = require("socket.http")
 local ltn12 = require("ltn12")
 
 
-function makeRequest( URL, data )
-	local response = {}
-	http.request({
-	    method = "POST",
-	    url = URL,
-	    headers = {
-	            ["Content-Type"] = "application/x-www-form-urlencoded",
-	            ["Content-Length"] = string.len(data)
-	        },
-	    source = ltn12.source.string(data),
-	    sink = ltn12.sink.table(response)
-	    })
-	print(table.concat(response))
+function makeRequest(url, data)
+
+	copas.addthread(function()
+    
+   		-- print("Thread 1 Added")
+    	local response = {}
+		http.request({
+		    method = "POST",
+		    url = url,
+		    headers = {
+		            ["Content-Type"] = "application/x-www-form-urlencoded",
+		            ["Content-Length"] = string.len(data)
+		        },
+		    source = ltn12.source.string(data),
+		    sink = ltn12.sink.table(response)
+		    })
+		print(table.concat(response))
+	end)
 end
 
 
