@@ -17,7 +17,7 @@
 
 </div>
 
-```bash
+```
 luarocks install melipayamak
 ```
 
