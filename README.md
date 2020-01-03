@@ -13,7 +13,13 @@
 
 [**ثبت نام به همراه دریافت 200 پیامک هدیه جهت تست وبسرویس**](http://www.melipayamak.com/)
 
+نصب از طریق `luarocks` با اجرای دستور زیر :
+
 </div>
+
+```bash
+luarocks install melipayamak
+```
 
 <div dir='rtl'>
   
