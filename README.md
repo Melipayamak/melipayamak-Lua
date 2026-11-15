@@ -38,7 +38,7 @@ local to = "09123456789";
 local text = "تست وب سرویس ملی پیامک";
 local isFlash = false;
 SendSimpleSMS2(username, password, to, from, text, isFlash);
-//یا برای ارسال به مجموعه ای از مخاطبین
+-- یا برای ارسال به مجموعه ای از مخاطبین
 SendSimpleSMS(username, password, to, from, text, isFlash);
 ```
 
@@ -99,11 +99,11 @@ GetDeliveries(username, password, recIds);
 ```lua
 GetMessages(username, password, location, index, count, from);
 getMessages(username, password, location, from, index, count);
-// جهت دریافت به صورت رشته ای
+-- جهت دریافت به صورت رشته ای
 GetMessagesByDate(username, password, location, from, index, count, dateFrom, dateTo);
-//جهت دریافت بر اساس تاریخ
+-- جهت دریافت بر اساس تاریخ
 GetUsersMessagesByDate(username, password, location, from, index, count, dateFrom, dateTo);
-// جهت دریافت پیام های کاربران بر اساس تاریخ 
+-- جهت دریافت پیام های کاربران بر اساس تاریخ 
 ```
 
 #### موجودی
@@ -124,7 +124,7 @@ GetUserNumbers(username, password);
 #### بررسی تعداد پیامک های دریافتی
 ```lua
 GetInboxCount(username, password, isRead);
-//پیش فرض خوانده نشده 
+-- پیش فرض خوانده نشده 
 ```
 
 #### ارسال پیامک پیشرفته
