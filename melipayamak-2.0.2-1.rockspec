@@ -5,7 +5,7 @@ version = "2.0.2-1"
 
 source = {
     url = "git+https://github.com/Melipayamak/melipayamak-Lua.git",
-    tag = "v2.0.2"
+    tag = "v2"
 }
 
 description = {
