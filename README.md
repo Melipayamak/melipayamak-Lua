@@ -3,7 +3,7 @@
 <!-- Project Status -->
 ![Lua](https://img.shields.io/badge/Lua-5.4-2C2D72?logo=lua&logoColor=white)
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![License](https://img.shields.io/github/license/Melipayamak/melipayamak-lua)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![LuaRocks](https://img.shields.io/luarocks/v/melipayamak)
 ![LuaRocks Downloads](https://img.shields.io/luarocks/dt/melipayamak)
 ![Status](https://img.shields.io/badge/status-active-success)
