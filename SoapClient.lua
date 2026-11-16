@@ -1,5 +1,8 @@
+local SoapClient = {}
+
 local http = require("socket.http")
 local ltn12 = require("ltn12")
+local SoapBuilder = require("SoapBuilder")
 
 
 local _sendURL = "https://api.payamak-panel.com/post/send.asmx"
@@ -9,6 +12,9 @@ local _contactsURL = "http://api.payamak-panel.com/post/contacts.asmx"
 local _actionsURL = "http://api.payamak-panel.com/post/actions.asmx"
 local _scheduleURL = "http://api.payamak-panel.com/post/Schedule.asmx"
 local _voiceURL = "http://api.payamak-panel.com/post/Voice.asmx"
+local _newBulksURL = "https://api.payamak-panel.com/post/newbulks.asmx";
+local _smartURL = "https://api.payamak-panel.com/post/Smartsms.asmx";
+local _blackListURL = "https://api.payamak-panel.com/post/blacklist.asmx";
 
 function makeRequest( url, data )
     local response = {}
@@ -28,20 +34,32 @@ end
 
 
 function SendSimpleSMS2(username, password, to, from, msg, flash) 
-    local _method = "SendSimpleSMS2"
-    local data = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><" .. _method .. " xmlns=\"http://tempuri.org/\"><username>" .. username .. "</username><password>" .. password .. "</password><to>" .. to .. "</to><from>" .. from .. "</from><text>" .. msg .. "</text><isflash>" .. tostring(flash) .. "</isflash></".. _method .."></soap:Body></soap:Envelope>"
+    -- TODO: use SoapBuilder in the other old methods
 
+    local data = SoapBuilder.build("SendSimpleSMS2", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "to", value = to },
+        { name = "from", value = from },
+        { name = "text", value = msg },
+        { name = "isflash", value = flash }
+    })
+    -- print("SOAP Request Body:\n" .. data)
     makeRequest(_sendURL, data)
 end
 
 
 function SendSimpleSMS(username, password, to, from, msg, flash) 
 
-    local _to = "<string>" .. table.concat(to, "</string><string>") .. "</string>"
+    local data = SoapBuilder.build("SendSimpleSMS", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "to", value = to, array = true, itemType = "string" },
+        { name = "from", value = from },
+        { name = "text", value = msg },
+        { name = "isflash", value = flash }
+    })
 
-    local _method = "SendSimpleSMS"
-    local data = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><" .. _method .. " xmlns=\"http://tempuri.org/\"><username>" .. username .. "</username><password>" .. password .. "</passwtable.concatord><to>" .. _to .. "</to><from>" .. from .. "</from><text>" .. msg .. "</text><isflash>" .. tostring(flash) .. "</isflash></".. _method .."></soap:Body></soap:Envelope>"
- 
     makeRequest(_sendURL, data)
 end
 function SendSms(username, password, to, from, msg, flash, udh, recid) 
@@ -156,9 +174,11 @@ function GetDeliveries(username, password, recIds)
 end
 function GetCredit(username, password) 
 
-    local _method = "GetCredit"
-    local data = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><" .. _method .. " xmlns=\"http://tempuri.org/\"><username>" .. username .. "</username><password>" .. password .. "</password></".. _method .."></soap:Body></soap:Envelope>"
- 
+    local data = SoapBuilder.build("GetCredit", {
+        { name = "username", value = username },
+        { name = "password", value = password }
+    })
+
     makeRequest(_sendURL, data)
 end
 
@@ -841,9 +861,476 @@ end
 
 
 
-local username = "username"
-local password = "password"
-local from = "5000..."
-local to = "09123456789"
-local text = "Lua Soap Test"
-SendSimpleSMS2(username, password, from, to, text, false)
+
+
+-- v2
+
+function SendByBaseNumber3(username, password, text, to)
+    local data = SoapBuilder.build("SendByBaseNumber3", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "to", value = to },
+        { name = "text", value = text }
+    })
+
+    makeRequest(_sendURL, data)
+end
+
+
+function SendByBaseNumber4(username, password, text, to, bodyId, smsPrice)
+    local data = SoapBuilder.build("SendByBaseNumber4", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "to", value = to },
+        { name = "text", value = text },
+        { name = "bodyId", value = bodyId },
+        { name = "smsPrice", value = smsPrice}
+    })
+
+    makeRequest(_sendURL, data)
+end
+
+
+function SendOtp2(username, password, to, from, code)
+    local data = SoapBuilder.build("SendOtp2", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "to", value = to },
+        { name = "from", value = from },
+        { name = "code", value = code }
+    })
+
+    makeRequest(_sendURL, data)
+end
+
+function SendSms2(username, password, to, from, text, isflash, udh)
+    local data = SoapBuilder.build("SendSms2", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "to", value = to, array = true, itemType = "string" },
+        { name = "from", value = from },
+        { name = "text", value = text },
+        { name = "isflash", value = isflash },
+        { name = "udh", value = udh }
+    })
+
+    makeRequest(_sendURL, data)
+end
+
+
+function AddContact2(username, password, groupIds, firstname, lastname, gender, corporation, mobilenumber)
+    local data = SoapBuilder.build("AddContact2", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "groupIds", value = groupIds },
+        { name = "firstname", value = firstname },
+        { name = "lastname", value = lastname },
+        { name = "gender", value = gender },
+        { name = "corporation", value = corporation },
+        { name = "mobilenumber", value = mobilenumber }
+    })
+
+    makeRequest(_contactsURL, data)
+end
+
+
+function AddContactEvents(username, password, contactId, eventName, eventType, eventDate)
+    local data = SoapBuilder.build("AddContactEvents", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "contactId", value = contactId },
+        { name = "eventName", value = eventName },
+        { name = "eventType", value = eventType },
+        { name = "eventDate", value = eventDate }
+    })
+    makeRequest(_contactsURL, data)
+end
+
+
+function ChangeContact2(username, password, contactId, mobilenumber, firstname, lastname, nickname, corporation, phone, fax, email, gender, province, city, address, postalCode, additionaltext, descriptions, contactStatus, birthdate)
+    local data = SoapBuilder.build("ChangeContact2", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "contactId", value = contactId },
+        { name = "mobilenumber", value = mobilenumber },
+        { name = "firstname", value = firstname },
+        { name = "lastname", value = lastname },
+        { name = "nickname", value = nickname },
+        { name = "corporation", value = corporation },
+        { name = "phone", value = phone },
+        { name = "fax", value = fax },
+        { name = "email", value = email },
+        { name = "gender", value = gender },
+        { name = "province", value = province },
+        { name = "city", value = city },
+        { name = "address", value = address },
+        { name = "postalCode", value = postalCode },
+        { name = "additionaltext", value = additionaltext },
+        { name = "descriptions", value = descriptions },
+        { name = "contactStatus", value = contactStatus },
+        { name = "birthdate", value = birthdate }
+    })
+
+    makeRequest(_contactsURL, data)
+end
+
+
+function ChangeGroup(username, password, groupId, groupName, Descriptions, showToChilds, groupStatus)
+    local data = SoapBuilder.build("ChangeGroup", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "groupId", value = groupId },
+        { name = "groupName", value = groupName },
+        { name = "Descriptions", value = Descriptions },
+        { name = "showToChilds", value = showToChilds },
+        { name = "groupStatus", value = groupStatus }
+    })
+    makeRequest(_contactsURL, data)
+end
+
+
+function RemoveContact2(username, password, contactId, groupId)
+    local data = SoapBuilder.build("RemoveContact2", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "contactId", value = contactId },
+        { name = "groupId", value = groupId }
+    })
+    makeRequest(_contactsURL, data)
+end
+
+
+function RemoveGroup(username, password, groupId)
+    local data = SoapBuilder.build("RemoveGroup", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "groupId", value = groupId }
+    })
+    makeRequest(_contactsURL, data)
+end
+
+
+function GetOutBoxCount(username, password)
+    local data = SoapBuilder.build("GetOutBoxCount", {
+        { name = "username", value = username },
+        { name = "password", value = password }
+    })
+    makeRequest(_receiveURL, data)
+end
+
+
+function GetMultipleSMS3Deliveries(username, password, Id)
+    local data = SoapBuilder.build("GetMultipleSMS3Deliveries", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "Id", value = Id, array = true, itemType = "long" }
+    })
+    makeRequest(_actionsURL, data)
+end
+
+
+function GetSendBulk(username, password)
+    local data = SoapBuilder.build("GetSendBulk", {
+        { name = "username", value = username },
+        { name = "password", value = password }
+    })
+    makeRequest(_actionsURL, data)
+end
+
+
+function AddNewUsance(username, password, to, from, text, isflash, scheduleStartDateTime, countrepeat, scheduleEndDateTime, periodType)
+    local data = SoapBuilder.build("AddNewUsance", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "to", value = to },
+        { name = "from", value = from },
+        { name = "text", value = text },
+        { name = "isflash", value = isflash },
+        { name = "scheduleStartDateTime", value = scheduleStartDateTime },
+        { name = "countrepeat", value = countrepeat },
+        { name = "scheduleEndDateTime", value = scheduleEndDateTime },
+        { name = "periodType", value = periodType }
+    })
+    makeRequest(_scheduleURL, data)
+end
+
+
+function AddScheduleSendByBaseNumber2(username, password, text, to, bodyId, scheduleDate)
+    local data = SoapBuilder.build("AddScheduleSendByBaseNumber2", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "to", value = to },
+        { name = "text", value = text },
+        { name = "bodyId", value = bodyId },
+        { name = "scheduleDate", value = scheduleDate }
+    })
+    makeRequest(_scheduleURL, data)
+end
+
+
+function GetScheduleDetails(username, password, scheduleId)
+    local data = SoapBuilder.build("GetScheduleDetails", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "scheduleId", value = scheduleId }
+    })
+    makeRequest(_scheduleURL, data)
+end
+
+
+function RemoveScheduleList(username, password, scheduleIdList)
+    local data = SoapBuilder.build("RemoveScheduleList", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "scheduleIdList", value = scheduleIdList, array = true, itemType = "int" }
+    })
+    makeRequest(_scheduleURL, data)
+end
+
+
+function GetSendSpeechTextStatus(recId)
+    local data = SoapBuilder.build("GetSendSpeechTextStatus", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "recId", value = recId}
+    })
+    makeRequest(_voiceURL, data)
+end
+
+
+function GetSendSpeechTextStatuses(username, password, recIds)
+    local data = SoapBuilder.build("GetSendSpeechTextStatuses", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "recIds", value = recIds, array = true, itemType = "long"}
+    })
+    makeRequest(_voiceURL, data)
+end
+
+
+function SendBulkSpeechText(username, password, title, body, receivers, DateToSend, RepeatCount)
+    local data = SoapBuilder.build("SendBulkSpeechText", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "title", value = title },
+        { name = "body", value = body },
+        { name = "receivers", value = receivers },
+        { name = "DateToSend", value = DateToSend },
+        { name = "RepeatCount", value = RepeatCount }
+    })
+    makeRequest(_voiceURL, data)
+end
+
+
+function SendBulkVoiceSMS(username, password, title, voiceFileId, receivers, DateToSend, repeatCount)
+    local data = SoapBuilder.build("SendBulkVoiceSMS", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "title", value = title },
+        { name = "voiceFileId", value = voiceFileId },
+        { name = "receivers", value = receivers },
+        { name = "DateToSend", value = DateToSend },
+        { name = "repeatCount", value = repeatCount }
+    })
+    makeRequest(_voiceURL, data)
+end
+
+
+function SendSpeechText(username, password, text, to)
+    local data = SoapBuilder.build("SendSpeechText", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "text", value = text },
+        { name = "to", value = to }
+    })
+    makeRequest(_voiceURL, data)
+end
+
+
+function SendVoiceOtp(username, password, to, code)
+    local data = SoapBuilder.build("SendVoiceOtp", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "code", value = code },
+        { name = "to", value = to }
+    })
+    makeRequest(_voiceURL, data)
+end
+
+
+function AddNumberBulk(username, password, from, title, message, receivers, DateToSend)
+    local data = SoapBuilder.build("AddNumberBulk", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "from", value = from },
+        { name = "title", value = title },
+        { name = "message", value = message },
+        { name = "receivers", value = receivers },
+        { name = "DateToSend", value = DateToSend }
+    })
+    makeRequest(_newBulksURL, data)
+end
+
+
+function AddNumberBulk2(username, password, from, body, to)
+    local data = SoapBuilder.build("AddNumberBulk2", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "from", value = from },
+        { name = "body", value = body },
+        { name = "to", value = to, array = true, itemType = "string" }
+    })
+    makeRequest(_newBulksURL, data)
+end
+
+
+function GetBulkDeliveries(username, password, recIds)
+    local data = SoapBuilder.build("GetBulkDeliveries", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "recIds", value = recIds, array = true, itemType = "string" }
+    })
+    makeRequest(_newBulksURL, data)
+end
+
+
+function GetBulkDeliveries2(username, password, recId)
+    local data = SoapBuilder.build("GetBulkDeliveries2", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "recId", value = recId }
+    })
+    makeRequest(_newBulksURL, data)
+end
+
+
+function GetBulkDetails(username, password, bulkdId)
+    local data = SoapBuilder.build("GetBulkDetails", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "bulkdId", value = bulkdId }
+    })
+    makeRequest(_newBulksURL, data)
+end
+
+
+function SendSmsToContact(username, password, message, title, from, groupId, dateToSend)
+    local data = SoapBuilder.build("SendSmsToContact", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "message", value = message },
+        { name = "title", value = title },
+        { name = "from", value = from },
+        { name = "groupId", value = groupId },
+        { name = "dateToSend", value = dateToSend }
+    })
+    makeRequest(_newBulksURL, data)
+end
+
+
+function GetSmartSMSDeliveries(username, password, Id)
+    local data = SoapBuilder.build("GetSmartSMSDeliveries", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "Id", value = Id, array = true, itemType = "long" }
+    })
+    makeRequest(_smartURL, data)
+end
+
+function GetSmartSMSDetails(username, password, Id)
+    local data = SoapBuilder.build("GetSmartSMSDetails", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "Id", value = Id }
+    })
+    makeRequest(_smartURL, data)
+end
+
+
+function SendMultipleSmartSMS(username, password, to, text, from, fromSupportOne, fromSupportTwo)
+    local data = SoapBuilder.build("SendMultipleSmartSMS", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "to", value = to, array = true, itemType = "string" },
+        { name = "text", value = text, array = true, itemType = "string" },
+        { name = "from", value = from },
+        { name = "fromSupportOne", value = fromSupportOne },
+        { name = "fromSupportTwo", value = fromSupportTwo }
+    })
+    makeRequest(_smartURL, data)
+end
+
+function SendSmartSMS(username, password, to, text, from, fromSupportOne, fromSupportTwo)
+    local data = SoapBuilder.build("SendSmartSMS", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "to", value = to },
+        { name = "text", value = text },
+        { name = "from", value = from },
+        { name = "fromSupportOne", value = fromSupportOne },
+        { name = "fromSupportTwo", value = fromSupportTwo }
+    })
+    makeRequest(_smartURL, data)
+end
+
+
+function AddBlackList(username, password, number, type)
+    local data = SoapBuilder.build("AddBlackList", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "number", value = number },
+        { name = "type", value = type }
+    })
+    makeRequest(_blackListURL, data)
+end
+
+
+function AddMobile(username, password, listId, type, mobileNumbers, addBySms)
+    local data = SoapBuilder.build("AddMobile", {
+        { name = "username", value = username },
+        { name = "password", value = password },
+        { name = "mobileNumbers", value = mobileNumbers, array = true, itemType = "string" },
+        { name = "listId", value = listId },
+        { name = "type", value = type },
+        { name = "addBySms", value = addBySms }
+    })
+    makeRequest(_blackListURL, data)
+end
+
+function GetBlackLists(username, password)
+    local data = SoapBuilder.build("GetBlackLists", {
+        { name = "username", value = username },
+        { name = "password", value = password }
+    })
+    makeRequest(_blackListURL, data)
+end
+
+
+function GetEnExpireDate(username, password)
+    local data = SoapBuilder.build("GetEnExpireDate", {
+        { name = "username", value = username },
+        { name = "password", value = password }
+    })
+    makeRequest(_usersURL, data)
+end
+
+
+function GetUserCredit2(username, password)
+    local data = SoapBuilder.build("GetUserCredit2", {
+        { name = "username", value = username },
+        { name = "password", value = password }
+    })
+    makeRequest(_usersURL, data)
+end
+
+
+return SoapClient
+
+
+-- local username = "username"
+-- local password = "password"
+-- local from = "5000..."
+-- local to = "09123456789"
+-- local text = "Lua Soap Test"
+-- SendSimpleSMS2(username, password, to, from, text, false)
+-- GetCredit(username, password)
