@@ -46,20 +46,20 @@ luarocks install melipayamak --deps-mode=none
 
 
 ```lua
-local mpRest = require("mpRest");
-local mpRestAsync = require("mpRestAsync");
-local mpSoap = require("mpSoap");
-local mpSoapAsync = require("mpSoapAsync");
+local mpRest = require("mpRest")
+local mpRestAsync = require("mpRestAsync")
+local mpSoap = require("mpSoap")
+local mpSoapAsync = require("mpSoapAsync")
 
-local username = "username";
-local password = "password";
-local from = "5000...";
-local to = "09123456789";
-local text = "تست وب سرویس ملی پیامک";
-local isFlash = false;
-SendSimpleSMS2(username, password, to, from, text, isFlash);
+local username = "username"
+local password = "password"
+local from = "5000..."
+local to = "09123456789"
+local text = "تست وب سرویس ملی پیامک"
+local isFlash = false
+SendSimpleSMS2(username, password, to, from, text, isFlash)
 -- یا برای ارسال به مجموعه ای از مخاطبین
-SendSimpleSMS(username, password, to, from, text, isFlash);
+SendSimpleSMS(username, password, to, from, text, isFlash)
 ```
 
 <div dir='rtl'>
@@ -96,98 +96,98 @@ SendSimpleSMS(username, password, to, from, text, isFlash);
 #### ارسال
 
 ```lua
-Send(username, password, to, from, text, isFlash);
-SendSimpleSMS(username, password, to, from, text, isFlash);
+Send(username, password, to, from, text, isFlash)
+SendSimpleSMS(username, password, to, from, text, isFlash)
 ```
 
 #### ارسال از خط خدماتی اشتراکی
 
 ```lua
-SendByBaseNumber(username, password, text, to, bodyId);
+SendByBaseNumber(username, password, text, to, bodyId)
 --soap:
-SendByBaseNumber2(username, password, text, to, bodyId);
+SendByBaseNumber2(username, password, text, to, bodyId)
 ```
 
 #### دریافت وضعیت ارسال
 ```lua
-GetDelivery(username, password, recId);
-GetDeliveries(username, password, recIds);
+GetDelivery(username, password, recId)
+GetDeliveries(username, password, recIds)
 ```
 
 #### لیست پیامک ها
 
 ```lua
-GetMessages(username, password, location, index, count, from);
-getMessages(username, password, location, from, index, count);
+GetMessages(username, password, location, index, count, from)
+getMessages(username, password, location, from, index, count)
 -- جهت دریافت به صورت رشته ای
-GetMessagesByDate(username, password, location, from, index, count, dateFrom, dateTo);
+GetMessagesByDate(username, password, location, from, index, count, dateFrom, dateTo)
 -- جهت دریافت بر اساس تاریخ
-GetUsersMessagesByDate(username, password, location, from, index, count, dateFrom, dateTo);
+GetUsersMessagesByDate(username, password, location, from, index, count, dateFrom, dateTo)
 -- جهت دریافت پیام های کاربران بر اساس تاریخ 
 ```
 
 #### موجودی
 ```lua
-GetCredit(username, password);
+GetCredit(username, password)
 ```
 
 #### تعرفه پایه / دریافت قیمت قبل از ارسال
 ```lua
-GetBasePrice(username, password);
-GetSmsPrice(username, password, irancellCount, mtnCount, from, text);
+GetBasePrice(username, password)
+GetSmsPrice(username, password, irancellCount, mtnCount, from, text)
 ```
 #### لیست شماره اختصاصی
 ```lua
-GetUserNumbers(username, password);
+GetUserNumbers(username, password)
 ```
 
 #### بررسی تعداد پیامک های دریافتی
 ```lua
-GetInboxCount(username, password, isRead);
+GetInboxCount(username, password, isRead)
 -- پیش فرض خوانده نشده 
 ```
 
 #### ارسال پیامک پیشرفته
 ```lua
-SendSms(username, password, to, from, text, isflash, udh, recId, status);
+SendSms(username, password, to, from, text, isflash, udh, recId, status)
 ```
 
 #### مشاهده مشخصات پیام
 ```lua
-GetMessagesReceptions(username, password, msgId, fromRows);
+GetMessagesReceptions(username, password, msgId, fromRows)
 ```
 
 
 #### حذف پیام دریافتی
 ```lua
-RemoveMessages2(username, password, location, msgIds);
+RemoveMessages2(username, password, location, msgIds)
 ```
 
 
 #### ارسال زماندار
 ```lua
-AddSchedule(username, password, to, from, text, isflash, scheduleDateTime, period);
+AddSchedule(username, password, to, from, text, isflash, scheduleDateTime, period)
 ```
 
 #### ارسال زماندار متناظر
 ```lua
-AddMultipleSchedule(username, password, to, from, text, isflash, scheduleDateTime, period);
+AddMultipleSchedule(username, password, to, from, text, isflash, scheduleDateTime, period)
 ```
 
 
 #### ارسال سررسید
 ```lua
-AddUsance(username, password, to, from, text, isflash, scheduleStartDateTime, repeatAfterDays, scheduleEndDateTime);
+AddUsance(username, password, to, from, text, isflash, scheduleStartDateTime, repeatAfterDays, scheduleEndDateTime)
 ```
 
 #### مشاهده وضعیت ارسال زماندار
 ```lua
-GetScheduleStatus(username, password, schId);
+GetScheduleStatus(username, password, schId)
 ```
 
 #### حذف پیامک زماندار
 ```lua
-RemoveSchedule(username, password, schId);
+RemoveSchedule(username, password, schId)
 ```
 
 <div dir='rtl'>
@@ -198,32 +198,32 @@ RemoveSchedule(username, password, schId);
 
 ####  ارسال پیامک همراه با تماس صوتی
 ```lua
-SendSMSWithSpeechText(username, password, smsBody, speechBody, from, to);
+SendSMSWithSpeechText(username, password, smsBody, speechBody, from, to)
 ```
 
 ####  ارسال پیامک همراه با تماس صوتی به صورت زمانبندی
 ```lua
-SendSMSWithSpeechTextBySchduleDate(username, password, smsBody, speechBody, from, to, scheduleDate);
+SendSMSWithSpeechTextBySchduleDate(username, password, smsBody, speechBody, from, to, scheduleDate)
 ```
 
 ####  دریافت وضعیت پیامک همراه با تماس صوتی 
 ```lua
-GetSendSMSWithSpeechTextStatus(username, password, recId);
+GetSendSMSWithSpeechTextStatus(username, password, recId)
 ```
 
 #### تماس انبوه زماندار
 ```lua
-SendBulkSpeechText(username, password, title, body, receivers, DateToSend, repeatCount);
+SendBulkSpeechText(username, password, title, body, receivers, DateToSend, repeatCount)
 ```
 
 #### تماس انبوه زماندار با انتخاب فایل
 ```lua
-SendBulkVoiceSMS(username, password, title, voiceFileId, receivers, DateToSend, repeatCount);
+SendBulkVoiceSMS(username, password, title, voiceFileId, receivers, DateToSend, repeatCount)
 ```
 
 #### آپلود فایل صوتی
 ```lua
-UploadVoiceFile(username, password, title, base64StringFile);
+UploadVoiceFile(username, password, title, base64StringFile)
 ```
 
 <div dir='rtl'>
@@ -234,71 +234,71 @@ UploadVoiceFile(username, password, title, base64StringFile);
 
 #### دریافت شناسه شاخه های بانک شماره
 ```lua
-GetBranchs(username, password, owner);
+GetBranchs(username, password, owner)
 ```
 
 
 #### اضافه کردن یک بانک شماره جدید
 ```lua
-AddBranch(username, password, branchName, owner);
+AddBranch(username, password, branchName, owner)
 ```
 
 #### اضافه کردن شماره به بانک
 ```lua
-AddNumber(username, password, branchId, mobileNumbers);
+AddNumber(username, password, branchId, mobileNumbers)
 ```
 
 #### حذف یک بانک
 ```lua
-RemoveBranch(username, password, branchId);
+RemoveBranch(username, password, branchId)
 ```
 
 #### ارسال انبوه از طریق بانک
 ```lua
-AddBulk(username, password, from, branch, bulkType, title, message, rangeFrom, rangeTo, DateToSend, requestCount, rowFrom);
+AddBulk(username, password, from, branch, bulkType, title, message, rangeFrom, rangeTo, DateToSend, requestCount, rowFrom)
 ```
 
 #### تعداد شماره های موجود
 ```lua
-GetBulkCount(username, password, branch, rangeFrom, rangeTo);
+GetBulkCount(username, password, branch, rangeFrom, rangeTo)
 ```
 
 #### گزارش گیری از ارسال انبوه
 ```lua
-GetBulkReceptions(username, password, bulkId, fromRows);
+GetBulkReceptions(username, password, bulkId, fromRows)
 ```
 
 
 #### تعیین وضعیت ارسال 
 ```lua
-GetBulkStatus(username, password, bulkId, sent, failed, status);
+GetBulkStatus(username, password, bulkId, sent, failed, status)
 ```
 
 #### تعداد ارسال های امروز
 ```lua
-GetTodaySent(username, password);
+GetTodaySent(username, password)
 ```
 
 #### تعداد ارسال های کل
 
 ```lua
-GetTotalSent(username, password);
+GetTotalSent(username, password)
 ```
 
 #### حذف ارسال منطقه ای
 ```lua
-RemoveBulk(username, password, bulkId);
+RemoveBulk(username, password, bulkId)
 ```
 
 #### ارسال متناظر
 ```lua
-SendMultipleSMS(username, password, to, from, text, isflash, udh, recId, status);
+SendMultipleSMS(username, password, to, from, text, isflash, udh, recId, status)
 ```
 
 #### نمایش دهنده وضعیت گزارش گیری
 
 ```lua
-UpdateBulkDelivery(username, password, bulkId);
+UpdateBulkDelivery(username, password, bulkId)
 ```
 <div dir='rtl'>
   
@@ -308,34 +308,34 @@ UpdateBulkDelivery(username, password, bulkId);
 
 #### ثبت تیکت جدید
 ```lua
-AddTicket(username, password, title, content, aletWithSms);
+AddTicket(username, password, title, content, aletWithSms)
 ```
 
 #### جستجو و دریافت تیکت ها
 
 ```lua
-GetReceivedTickets(username, password, ticketOwner, ticketType, keyword);
+GetReceivedTickets(username, password, ticketOwner, ticketType, keyword)
 ```
 
 #### دریافت تعداد تیکت های کاربران
 ```lua
-GetReceivedTicketsCount(username, password, ticketType);
+GetReceivedTicketsCount(username, password, ticketType)
 ```
 
 #### دریافت تیکت های ارسال شده
 ```lua
-GetSentTickets(username, password, ticketOwner, ticketType, keyword);
+GetSentTickets(username, password, ticketOwner, ticketType, keyword)
 ```
 
 #### دریافت تعداد تیکت های ارسال شده
 ```lua
-GetSentTicketsCount(username, password, ticketType);
+GetSentTicketsCount(username, password, ticketType)
 ```
 
 
 #### پاسخگویی به تیکت
 ```lua
-ResponseTicket(username, password, ticketId, type, content, alertWithSms);
+ResponseTicket(username, password, ticketId, type, content, alertWithSms)
 ```
 
 <div dir='rtl'>
@@ -346,39 +346,39 @@ ResponseTicket(username, password, ticketId, type, content, alertWithSms);
 
 #### اضافه کردن گروه جدید
 ```lua
-AddGroup(username, password, groupName, Descriptions, showToChilds);
+AddGroup(username, password, groupName, Descriptions, showToChilds)
 ```
 
 #### اضافه کردن کاربر جدید
 ```lua
-AddContact(username, password, options);
+AddContact(username, password, options)
 ```
 
 #### بررسی موجود بودن شماره در دفترچه تلفن
 ```lua
-CheckMobileExistInContact(username, password, mobileNumber);
+CheckMobileExistInContact(username, password, mobileNumber)
 ```
 
 #### دریافت اطلاعات دفترچه تلفن
 ```lua
-GetContacts(username, password, groupId, keyword, count);
+GetContacts(username, password, groupId, keyword, count)
 ```
 #### دریافت گروه ها
 ```lua
-GetGroups(username, password);
+GetGroups(username, password)
 ```
 #### ویرایش مخاطب
 ```lua
-ChangeContact(username, password, options);
+ChangeContact(username, password, options)
 ```
 
 #### حذف مخاطب
 ```lua
-RemoveContact(username, password, mobilenumber);
+RemoveContact(username, password, mobilenumber)
 ```
 #### دریافت اطلاعات مناسبت های فرد
 ```lua
-GetContactEvents(username, password, contactId);
+GetContactEvents(username, password, contactId)
 ```
 
 <div dir='rtl'>
@@ -389,92 +389,92 @@ GetContactEvents(username, password, contactId);
 
 #### ثبت فیش واریزی
 ```lua
-AddPayment(username, password, options);
+AddPayment(username, password, options)
 ```
 
 #### اضافه کردن کاربر جدید در سامانه
 ```lua
-AddUser(username, password, options);
+AddUser(username, password, options)
 
 ```
 
 #### اضافه کردن کاربر جدید در سامانه(کامل)
 ```lua
-AddUserComplete(username, password, options);
+AddUserComplete(username, password, options)
 ```
 
 #### اضافه کردن کاربر جدید در سامانه(WithLocation)
 ```lua
-AddUserWithLocation(username, password, options);
+AddUserWithLocation(username, password, options)
 ```
 #### بدست آوردن ID کاربر
 ```lua
-AuthenticateUser(username, password);
+AuthenticateUser(username, password)
 ```
 #### تغییر اعتبار
 ```lua
-ChangeUserCredit(username, password, amount, description, targetUsername, GetTax);
+ChangeUserCredit(username, password, amount, description, targetUsername, GetTax)
 ```
 
 #### فراموشی رمز عبور
 ```lua
-ForgotPassword(username, password, mobileNumber, emailAddress, targetUsername);
+ForgotPassword(username, password, mobileNumber, emailAddress, targetUsername)
 ```
 #### دریافت تعرفه پایه کاربر
 ```lua
-GetUserBasePrice(username, password, targetUsername);
+GetUserBasePrice(username, password, targetUsername)
 ```
 
 #### دریافت اعتبار کاربر
 ```lua
-GetUserCredit(username, password, targetUsername);
+GetUserCredit(username, password, targetUsername)
 ```
 
 #### دریافت مشخصات کاربر
 ```lua
-GetUserDetails(username, password, targetUsername);
+GetUserDetails(username, password, targetUsername)
 ```
 
 #### دریافت شماره های کاربر
 ```lua
-GetUserNumbers(username, password);
+GetUserNumbers(username, password)
 ```
 
 #### دریافت تراکنش های کاربر
 ```lua
-GetUserTransactions(username, password, targetUsername, creditType, dateFrom, dateTo, keyword);
+GetUserTransactions(username, password, targetUsername, creditType, dateFrom, dateTo, keyword)
 ```
 
 #### دریافت اطلاعات  کاربران
 ```lua
-GetUsers(username, password);
+GetUsers(username, password)
 ```
 
 
 #### دریافت اطلاعات  فیلترینگ
 ```lua
-HasFilter(username, password, text);
+HasFilter(username, password, text)
 ```
 
 
 ####  حذف کاربر
 ```lua
-RemoveUser(username, password, targetUsername);
+RemoveUser(username, password, targetUsername)
 ```
 
 
 #### مشاهده استان ها
 ```lua
-GetProvinces(username, password);
+GetProvinces(username, password)
 ```
 
 #### مشاهده کد شهرستان 
 ```lua
-GetCities(username, password, provinceId);
+GetCities(username, password, provinceId)
 ```
 
 
 #### مشاهده تاریخ انقضای کاربر 
 ```lua
-GetExpireDate(username, password);
+GetExpireDate(username, password)
 ```
