@@ -51,15 +51,25 @@ local mpRestAsync = require("mpRestAsync")
 local mpSoap = require("mpSoap")
 local mpSoapAsync = require("mpSoapAsync")
 
+-- or
+
+local Melipayamak = require("Melipayamak")
+
+Melipayamak.Rest.GetCredit(...)
+Melipayamak.Soap.SendSimpleSMS(...)
+Melipayamak.RestAsync.GetCredit(...)
+Melipayamak.SoapAsync.SendSimpleSMS(...)
+
+-- usage
 local username = "username"
 local password = "password"
 local from = "5000..."
 local to = "09123456789"
 local text = "تست وب سرویس ملی پیامک"
 local isFlash = false
-SendSimpleSMS2(username, password, to, from, text, isFlash)
+Melipayamak.Soap.SendSimpleSMS2(username, password, to, from, text, isFlash)
 -- یا برای ارسال به مجموعه ای از مخاطبین
-SendSimpleSMS(username, password, to, from, text, isFlash)
+Melipayamak.Soap.SendSimpleSMS(username, password, to, from, text, isFlash)
 ```
 
 <div dir='rtl'>
