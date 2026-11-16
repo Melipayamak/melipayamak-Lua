@@ -1,12 +1,12 @@
 # melipayamak Lua
 
 <!-- Project Status -->
-![Lua](https://img.shields.io/badge/Lua-5.4-2C2D72?logo=lua&logoColor=white)
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Lua](https://img.shields.io/badge/Lua-5.1-2C2D72?logo=lua&logoColor=white)
+![Version](https://img.shields.io/badge/version-2.0.2-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-![LuaRocks](https://img.shields.io/luarocks/v/melipayamak)
-![LuaRocks Downloads](https://img.shields.io/luarocks/dt/melipayamak)
 ![Status](https://img.shields.io/badge/status-active-success)
+<!-- ![LuaRocks](https://img.shields.io/luarocks/v/melipayamak)
+![LuaRocks Downloads](https://img.shields.io/luarocks/dt/melipayamak) -->
 
 
 <div dir='rtl'>
@@ -30,6 +30,12 @@
 luarocks install melipayamak
 ```
 
+یا در صورت نیاز از فرمان زیر استفاده کنید
+
+```bash
+luarocks install melipayamak --deps-mode=none
+```
+
 <div dir='rtl'>
   
 #### نحوه استفاده
@@ -40,6 +46,11 @@ luarocks install melipayamak
 
 
 ```lua
+local mpRest = require("mpRest");
+local mpRestAsync = require("mpRestAsync");
+local mpSoap = require("mpSoap");
+local mpSoapAsync = require("mpSoapAsync");
+
 local username = "username";
 local password = "password";
 local from = "5000...";
